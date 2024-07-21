@@ -9,38 +9,49 @@ theme:
     - content.code.annotate
     - search.highlight
     - header.autohide
+    - navigation.indexes
+    - navigation.tabs
+    - navigation.tracking
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - toc.follow
   palette:
     primary: 'indigo'
     accent: 'light blue'
-  logo: images/logo.png
-  favicon: images/favicon.ico
+  logo: assets/logo.png
+  favicon: assets/favicon.ico
+  font:
+    text: 'Roboto'  # 文本字体
+    code: 'Roboto Mono'  # 代码字体
+  language: 'zh'
+  icon:
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/squirrel-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
 
 nav:
   - 用户指南: pages/index.md
-  - 基本介绍: 
-      - 产品概述: pages/product_overview.md
-      - 主要特性: pages/features.md
-  - 安装指南: pages/installation.md
-  - 使用流程: pages/usage_process.md
+  - 相关术语: pages/reference/glossary.md
+  - 产品介绍: 
+      - 产品概述: pages/product/product_overview.md
+  - 快速开始: pages/usage_process.md
+  - 安装指南: pages/setup/installation.md
   - 算法集成: pages/sut_integration.md
-  - 故障排除: pages/troubleshooting.md
-  - 外部链接:
-      - MkDocs 官方网站: https://mkdocs.org/
-      - GitHub 仓库: https://github.com/your-repository
-
-
-
-# nav:
-#   - 产品介绍: pages/index.md
-#   - 主要功能: pages/features.md
-#   - Foretify Developer: pages/foretify_develpor.md
-#   - Foretify Manager: pages/foretify_manager.md
-#   - 快速开始: pages/quick_started.md
-#   - 安装指南: pages/installation.md
-#   - License Server安装: pages/license_server_installation.md
-#   - Foretify软件安装: pages/foretify_installation.md
-#   - 算法集成: pages/sut_integration.md
-#   - 故障排除: pages/troubleshooting.md
+  - 帮助: 
+      - 注意事项: pages/reference/caution.md
+      - 常见问题Troublshooting: pages/reference/troubleshooting.md
+      - Foretellix官网: https://www.foretellix.com
 
 plugins:
   - search
@@ -48,6 +59,12 @@ plugins:
       enable_version: true
       enable_relative: true
       enable_timezone: true
+  - glightbox
+  # - social:
+  #     # cards_layout: default/variant
+  #     cards_layout_options:
+  #       background_image: layouts/background.png
+  #       background_color: transparent
 
 markdown_extensions:
   - admonition
@@ -59,12 +76,24 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.smartsymbols
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - def_list
+
 
 extra_css:
   - stylesheets/custom.css
 
 extra_javascript:
   - javascripts/custom.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
-repo_url: https://github.com/yourusername/your-repository
-repo_name: GitHub
+# repo_url: https://github.com/yourusername/your-repository
+# repo_name: GitHub

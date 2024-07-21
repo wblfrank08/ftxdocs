@@ -1,10 +1,19 @@
 /* 自定义CSS样式 */
+
+@font-face {
+    font-family: "Microsoft YaHei";
+    src: "...";
+  }
+
 .markdown-body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif, Noto Sans CJK SC, Source Han Sans SC, Microsoft YaHei;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #333;
+    /* color: #333; */
+    font-weight: bold;
+    /* color: #000; 黑色 */
+    color: blue
 }
 
 .codehilite {
@@ -17,15 +26,13 @@ h1, h2, h3, h4, h5, h6 {
     border-left: 4px solid #2196F3;
 }
 
-/* 适用于 readthedocs 主题的自定义样式 */
-.md-content {
+.md-grid {
     max-width: 1200px; /* 调整为更宽的宽度 */
     margin: 0 auto; /* 居中显示 */
-    padding: 20px; /* 添加内边距 */
 }
 
 /* 使页面两侧留出空间 */
 .md-main {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
