@@ -3,7 +3,8 @@ site_description: 本文档为软件工具提供详细的介绍、安装指南�
 site_author: 你的名字
 
 theme:
-  name: material
+  # name: material
+  name: readthedocs
   features:
     - navigation.instant
     - content.code.annotate
