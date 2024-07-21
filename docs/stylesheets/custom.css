@@ -1,0 +1,31 @@
+/* 自定义CSS样式 */
+.markdown-body {
+    font-family: Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333;
+}
+
+.codehilite {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.admonition {
+    border-left: 4px solid #2196F3;
+}
+
+/* 适用于 readthedocs 主题的自定义样式 */
+.md-content {
+    max-width: 1200px; /* 调整为更宽的宽度 */
+    margin: 0 auto; /* 居中显示 */
+    padding: 20px; /* 添加内边距 */
+}
+
+/* 使页面两侧留出空间 */
+.md-main {
+    padding-left: 20px;
+    padding-right: 20px;
+}

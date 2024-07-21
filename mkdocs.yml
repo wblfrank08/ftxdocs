@@ -1,1 +1,70 @@
-site_name: My Docs
+site_name: Foretify用户指南
+site_description: 本文档为软件工具提供详细的介绍、安装指南、使用流程、操作方法及故障排除信息。
+site_author: 你的名字
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - content.code.annotate
+    - search.highlight
+    - header.autohide
+  palette:
+    primary: 'indigo'
+    accent: 'light blue'
+  logo: images/logo.png
+  favicon: images/favicon.ico
+
+nav:
+  - 用户指南: pages/index.md
+  - 基本介绍: 
+      - 产品概述: pages/product_overview.md
+      - 主要特性: pages/features.md
+  - 安装指南: pages/installation.md
+  - 使用流程: pages/usage_process.md
+  - 算法集成: pages/sut_integration.md
+  - 故障排除: pages/troubleshooting.md
+  - 外部链接:
+      - MkDocs 官方网站: https://mkdocs.org/
+      - GitHub 仓库: https://github.com/your-repository
+
+
+
+# nav:
+#   - 产品介绍: pages/index.md
+#   - 主要功能: pages/features.md
+#   - Foretify Developer: pages/foretify_develpor.md
+#   - Foretify Manager: pages/foretify_manager.md
+#   - 快速开始: pages/quick_started.md
+#   - 安装指南: pages/installation.md
+#   - License Server安装: pages/license_server_installation.md
+#   - Foretify软件安装: pages/foretify_installation.md
+#   - 算法集成: pages/sut_integration.md
+#   - 故障排除: pages/troubleshooting.md
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_version: true
+      enable_relative: true
+      enable_timezone: true
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.smartsymbols
+
+extra_css:
+  - stylesheets/custom.css
+
+extra_javascript:
+  - javascripts/custom.js
+
+repo_url: https://github.com/yourusername/your-repository
+repo_name: GitHub
