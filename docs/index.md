@@ -12,7 +12,7 @@
 * [软件安装部署](setup/deployment.md)
     * [License Server安装](setup/license_server_installation.md)
     * [Foretify安装](setup/foretify_installation.md)
-* [算法集成](Integration/Integration.md)
+* [集成说明](Integration/Integration.md)
 * [注意事项](reference/caution.md)
 * [常见问题](reference/troubleshooting.md)
 

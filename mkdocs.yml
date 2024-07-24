@@ -3,11 +3,12 @@ site_description: 本文档为软件工具提供详细的介绍、安装指南�
 site_author: 你的名字
 
 theme:
-  # name: material
-  name: readthedocs
+  name: material
+  # name: readthedocs
   features:
     - navigation.instant
     - content.code.annotate
+    - content.code.copy
     - search.highlight
     - header.autohide
     - navigation.indexes
@@ -43,16 +44,29 @@ theme:
 
 nav:
   - 用户指南: pages/index.md
-  - 相关术语: pages/reference/glossary.md
-  - 产品介绍: 
+  # - 相关术语: pages/reference/glossary.md
+  - 产品介绍:
       - 产品概述: pages/product/product_overview.md
-  - 快速开始: pages/usage_process.md
-  - 安装指南: pages/setup/installation.md
-  - 算法集成: pages/sut_integration.md
-  - 帮助: 
-      - 注意事项: pages/reference/caution.md
-      - 常见问题Troublshooting: pages/reference/troubleshooting.md
-      - Foretellix官网: https://www.foretellix.com
+      - 快速开始: 
+          - SDV流程: pages/tutorials/workflow.md
+          - 快速开始: 
+            - 如何通过Foretify Developer启动一次简单的测试: pages/tutorials/quick_started - Foretify Developer.md
+            - Foretify Manager简介: pages/product/fmanuser_intro.md
+            # - 查看测试定义: pages/tutorials/review_tests.md
+            # - 测试组执行（泛化）: pages/tutorials/run_test_suites.md
+            # - 创建工作区: pages/tutorials/create_workspace.md
+            # - 分析测试结果: pages/tutorials/triage.md
+            # - 分析覆盖率和性能指标: pages/tutorials/analyze_metrics.md
+
+  - 安装指南: 
+      - 安装须知: pages/setup/deployment.md
+      - 许可证安装: pages/setup/license_server_installation.md
+      - Foretify Developer安装: pages/setup/foretify_developer_installation.md
+      - Foretify Manager安装: pages/setup/foretify_manager_installation.md
+      - 仿真器配置: pages/setup/simulator_configuration.md
+  - 集成说明: pages/Integration/Integration.md
+  - Foretellix官网: https://www.foretellix.com
+  - Bilibili官方账号: https://space.bilibili.com/531249396
 
 plugins:
   - search
@@ -75,14 +89,19 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.smartsymbols
   - pymdownx.critic
   - pymdownx.caret
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
-  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
   - attr_list
   - md_in_html
   - def_list

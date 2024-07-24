@@ -41,26 +41,60 @@ Foretify平台的核心组成主要包括以下几个部分：
 5. **Foretify LogIQ™**：路测数据场景提取及分析工具，支持异常检测、关键场景提取、关键性能指标及覆盖度分析等功能；所提取场景可通过智能回放进行虚拟仿真的泛化测试。
 
 
-!!! note “注意”
-
-   Foretify平台并不包含仿真器，而是**支持与各种仿真器的无缝集成**,如VTD，Carmaker, Carla，51Sim等。无论是各大主流仿真平台还是用户自研的仿真器，在提供API接口的情况下Foretify都可与之集成并实现基于抽象场景的泛化测试。
-   
-   Foretify与仿真器的集成**无需仿真器支持OpenScenario DSL（OSC2.0)**
+!!! note "注意"
+      - Foretify平台并不包含仿真器，而是**支持与各种仿真器的无缝集成**,如VTD，Carmaker, Carla，51Sim等。无论是各大主流仿真平台还是用户自研的仿真器，在提供API接口的情况下Foretify都可与之集成并实现基于抽象场景的泛化测试。
+      - Foretify与仿真器的集成**无需仿真器支持OpenScenario DSL（OSC2.0)**
 
 
 ## 基于Foretify平台的仿真验证流程
 
-<p align="center">
-    <video style="width:100%" muted="" controls="" alt="type:video">
-        <source src="../videos/Foretellix-Road-to-safety.mp4" type="video/mp4">
-    </video>
-</p>
+[Watch Video on Bilibili](https://www.bilibili.com/video/BV1oh8ge4E7M/?vd_source=4207f93b159b5ac403fae18e1d8cf2c4){ .md-button .md-button--primary }
 
-<!-- <video width="640" height="480" controls>
-  <source src="../videos/Foretellix-Road-to-safety.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<figure markdown="span">
+  ![Foretellix logo](../images/Foretify workflow.png){ width="500" }
+  <figcaption>Foretellix: Road to Safety</figcaption>
+</figure>
 
-<video controls src="../videos/Foretellix-Road-to-safety.mp4" title="Title"></video> -->
 
-[Video on Bilibili](https://www.bilibili.com/video/BV1kH8geeEqx/?spm_id_from=333.999.0.0){ .md-button .md-button--primary }
+## 揭秘Foretfiy "约束-随机"测试生成器
+
+随着Foretify新版的发布，全新的“约束-随机”测试生成技术使Foretify性能提升了至少10倍，成为汽车行业最高效的测试生成、执行和管理解决方案。本视频聚焦于Foretify的核心技术，向您介绍Foretify如何基于OSC2.0抽象场景实现高效且有意义的场景泛化。
+
+[Watch Video on Bilibili](https://www.bilibili.com/video/BV1jm8zeuEND/?spm_id_from=333.999.0.0&vd_source=4207f93b159b5ac403fae18e1d8cf2c4){ .md-button .md-button--primary }
+
+<figure markdown="span">
+  ![Foretify Constrained-random test generator](../images/Constrained-random Test Generator.png){ width="500" }
+  <figcaption>Foretfify "约束-随机"测试生成器</figcaption>
+</figure>
+
+
+## 用户合作案例分享
+
+### Nuro
+
+**Foretellix和Nuro达成战略合作，加速自动驾驶汽车的安全部署**
+
+[Watch Video on Bilibili](https://www.bilibili.com/video/BV1jm8zeuEND/?spm_id_from=333.999.0.0&vd_source=4207f93b159b5ac403fae18e1d8cf2c4){ .md-button .md-button--primary }
+
+<figure markdown="span">
+  ![Nuro](../images/nuro.png){ width="500" }
+  <figcaption>Nuro partership</figcaption>
+</figure>
+
+自动驾驶配送初创企业Nuro与Foretellix宣布达成战略合作伙伴关系，以加速自动驾驶车辆在最后一公里配送中的安全和大规模部署，同时实现降本增效。此次合作旨在简化开发过程，降低研发成本，并提高自动驾驶技术的质量和安全性。
+Nuro的系统工程主管Sreeja Roy Singh说： “Nuro非常重视安全。Foretellix的安全驱动的V＆V技术支持了Nuro实现安全承诺，同时加速了我们的开发和商业化的道路。”， “Foretellix在使用OpenSCENARIO 2.0进行抽象场景描述和测试自动化方面的领导地位将在Nuro的开发过程中发挥至关重要的作用。它使我们能够使我们的研发更加高效，同时确保我们的技术在现实世界的情境中安全运行”。
+
+Nuro成立于2016年，是一家领先的自动驾驶科技公司，其车辆已在加利福尼亚和德克萨斯州的道路上运行。该公司的核心技术Nuro Driver™是 一个集成的自动驾驶系统，采用了先进的人工智能软件和定制的感知与计算硬件。与Uber和FedEx等合作伙伴关系的建立，使 Nuro 成为自动驾驶技术在无人配送商业领域实际应用的领先者。
+
+### NVIDIA
+
+Foretellix和NVIDIA联合推出ADAS/AV测试解决方案
+
+[Watch Video on Bilibili](https://www.bilibili.com/video/BV1Le8gexEmP/?spm_id_from=333.999.0.0&vd_source=4207f93b159b5ac403fae18e1d8cf2c4){ .md-button .md-button--primary }
+
+<figure markdown="span">
+  ![NVIDIA](../images/NVIDIA-Foretellix.png){ width="500" }
+  <figcaption>NVIDIA partership</figcaption>
+</figure>
+
+确保自动驾驶车辆（AV）的安全性和可靠性，同时加速市场推出时间并控制开发成本至关重要。为了解决这些挑战，Foretellix将NVIDIA Omniverse Cloud API整合到Foretify™平台上，以实现高保真度的传感器模拟。这个新解决方案通过提供基于物理的、高保真度的端到端模拟，以规模化的方式，彻底改变了AV的训练和验证方式。通过高保真度传感器模拟的方式，成功简化了自动驾驶训练和验证过程，并实现了复杂场景的自动化创建与分析。
