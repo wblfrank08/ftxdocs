@@ -21,7 +21,7 @@ theme:
   palette:
     primary: 'indigo'
     accent: 'light blue'
-  logo: assets/logo.png
+  logo: assets/Logo.png
   favicon: assets/favicon.ico
   font:
     text: 'Roboto'  # 文本字体
