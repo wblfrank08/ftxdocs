@@ -18,11 +18,18 @@ Foretify Manager 的安装分为两部分：
 
 ### Foretify Manager Server 安装
 
-**将Foretify Manager镜像文件拷贝至安装目录**
+**将Foretify Manager镜像文件拷贝至安装目录或挂载硬盘目录**
+
+因Foreteify Manager中包含数据库用于保存测试数据，因此最好选择容量空间大的硬盘位置。
 
 ``` py
 sudo cp -r <fmanager-docker镜像文件> /opt/foretellix/
 ```
+
+**docker load < <image>.tgz**
+
+
+
 
 **启动Foretify Manager的Docker服务**
 
@@ -42,10 +49,11 @@ docker compose up -d
 
 ### Foretify Manager Client 安装
 
-**解压安装包至安装目录**
+**copy安装包至安装目录并解压**
 
 ``` py
-tar -xzvf <fmanager安装包.tar.gz> /opt/foretellix/
+cp <fmanager安装包.tar.gz> /opt/foretellix/
+tar -xzvf <fmanager安装包.tar.gz> .
 ```
 
 解压后将出现`<fmanager client>`文件夹, 名称如：`fmanager_24.06.0.9_ubuntu2004`。修改其ownership,这样该机器的其他user也有权限对foretify manager中的测试数据进行访问查看。
@@ -56,7 +64,7 @@ sudo chown -R $USER:users /opt/foretellix/<fmanager client>
 
 **添加环境变量**
 
-再次打开 `/ftx/foretellix/ftx.rc`，添加如下环境变量：
+再次打开 `/opt/foretellix/ftx.rc`，添加如下环境变量：
 
 ``` py
 export PATH=$PATH:/opt/foretellix/<fmanager client>/client/bin
@@ -88,3 +96,30 @@ fmanager
   ![Foretellix logo](../images/Fmanager client ui.png){ width="600" }
   <figcaption>Foretify Manager Client UI</figcaption>
 </figure>
+
+### 附录：Docker 安装
+
+**Step 1. 在Terminal中依次执行以下指令**
+
+!!!note 注意
+    docker在国内安装受限，所以需将镜像源替换成国内的。如下已更新：
+
+
+```bash
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+

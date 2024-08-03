@@ -37,16 +37,17 @@ sudo chown $USER:users /opt/foretellix
 cd /opt/foretellix
 ```
 
-**将Foretellix提供的XC压缩包解压至安装目录：**
+**将Foretellix提供的压缩包copy到安装目录并解压：**
 
 ``` py
-tar xzf <XC压缩包.tar.gz>
+sudo 
+sudo tar -xvf foretify_prerequisites.tar.xz
 ```
 
 **解压后会生成一个XC开头的文件夹目录，更改其Ownership:**
 
 ``` py
-sudo chown -R $USER:users /opt/foretellix/<XC文件夹>
+sudo chown -R $USER:users /opt/foretellix/XCELIUM1809
 ```
 
 **在安装目录`/opt/foretellix/`下新建一个文件`ftx.rc`**
@@ -106,7 +107,7 @@ Foretellix提供的Foretify安装包为一个二进制文件，如`24.06.0.32-ub
 ./<installer_file> --destination /opt/foretellix
 ```
 
-安装成功后，会看到一个叫`ftx`的文件夹。
+安装成功后，会在安装目录`/opt/foretellix/`下看到一个叫`ftx`的文件夹。
 
 **添加环境变量**
 
