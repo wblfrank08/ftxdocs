@@ -11,7 +11,7 @@ theme:
     - content.code.copy
     - search.highlight
     - header.autohide
-    - navigation.indexes
+    # - navigation.indexes
     - navigation.tabs
     - navigation.tracking
     - navigation.top
@@ -41,7 +41,7 @@ theme:
       bug: octicons/bug-16
       example: octicons/beaker-16
       quote: octicons/quote-16
-
+      annotation: material/arrow-right-circle
 nav:
   - 用户指南: pages/index.md
   # - 相关术语: pages/reference/glossary.md
@@ -57,7 +57,7 @@ nav:
             # - 创建工作区: pages/tutorials/create_workspace.md
             # - 分析测试结果: pages/tutorials/triage.md
             # - 分析覆盖率和性能指标: pages/tutorials/analyze_metrics.md
-
+  - 快速开始: pages/quick_start/quick_start.md
   - 安装指南: 
       - 安装须知: pages/setup/deployment.md
       - 许可证安装: pages/setup/license_server_installation.md

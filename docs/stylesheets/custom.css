@@ -27,6 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 pre code, code {
     background-color: #f5f5f5; /* 设置代码块的背景颜色 */
     color: #4051B5; /* 设置代码文本颜色 */
+    white-space: pre-wrap;
 }
 
 .admonition {
@@ -34,12 +35,12 @@ pre code, code {
 }
 
 
-.md-grid {
+/* .md-grid {
     max-width: 1200px; /* 调整为更宽的宽度 */
     margin: 0 auto; /* 居中显示 */
-}
+} */
 
-/* 使页面两侧留出空间 */
+
 .md-main {
     padding-left: 10px;
     padding-right: 10px;
@@ -47,7 +48,7 @@ pre code, code {
 
 /* 限制表格的最大宽度并使其居中 */
 table {
-    max-width: 600px;  /* 设置表格的最大宽度，例如 600px */
+    width: 100%;
     margin-left: 0;
     margin-right: auto;
     border-collapse: collapse;  /* 去除单元格之间的空隙 */
