@@ -35,7 +35,7 @@ Foretify Manager是V&V环境的主要引擎之一，在V&V自动化流程的测�
 3. 使用您的用户凭据登录到Foretify Manager。
 
     ??? note "默认账号"
-        admin@fmanager/admin
+        admin@fmanager.com/admin
 
     在Foretify Manager中开始工作之前，您需要选择或创建一个项目。
 

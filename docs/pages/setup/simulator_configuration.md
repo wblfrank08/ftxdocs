@@ -1,7 +1,7 @@
 # 集成配置
 
 !!! tip "本章提示"
-    本章前半部分主要介绍关于集成的背景介绍，如果您已有所了解，可直接跳转至配置步骤进行实际操作。
+    本章前半部分主要介绍关于集成的背景介绍，您可选择直接跳转至[配置步骤](#configuration-steps)进行实际操作。
 
 ## 关于集成
 
@@ -20,7 +20,7 @@ Foretify 旨在尽可能保持通用性，以支持多种仿真器和被测系�
 
 | 集成 | 实现方式 | 说明 |
 |---|---|---|
-| **Foretify与simulator** | **SSP组件（标准）**|Foretify可无缝集成各种主流的仿真器软件进行集成，包括 VTD，Carmaker, Carla, 51Sim, Sumo等。但在正式使用之前，需要根据用户实际环境进行必要的配置，以确保Foretify可以连接到用户机上指定的仿真软件。|
+| **Foretify与simulator** | **SSP组件（标准）**|Foretify可无缝集成各种主流的仿真器软件，包括 VTD, Carmaker, Carla, 51Sim, Sumo等。但在正式使用之前，需要根据用户实际环境进行必要的配置，以确保Foretify可以连接到用户机上指定的仿真软件。|
 | **Foretify与SUT** | **DSP组件（半定制）**|需根据用户提供的算法接口进行一定程度的定制开发。Foretellix 工程师将协助完成这部分工作。如用户希望自行集成新的算法，Foretellix 工程师将提供标准规范及培训，帮助用户工程师顺利完成算法集成。|
 
 - **SSP-模拟器支持包** (Simulator Support Package): SSP是模拟器API的适配组件，提供接口给Foretify，接收Foretify的请求转化成对模拟器API的调用
@@ -35,7 +35,7 @@ Foretify 旨在尽可能保持通用性，以支持多种仿真器和被测系�
 Foretify集成的一般架构如下所示：
 
 <figure markdown="span">
-  ![Foretify集成架构](images/Foretify Integration architecture.png){ width="600" }
+  ![Foretify集成架构](images/Foretify Integration architecture.png){ width="800" }
   <figcaption>Foretify集成架构</figcaption>
 </figure>
 
@@ -44,7 +44,7 @@ Foretify集成的一般架构如下所示：
 其中各组件之间的关系抽象如下所示：
 
 <figure markdown="span">
-  ![Foretify集成的组件关系](images/Foretify integration components.png){ width="600" }
+  ![Foretify集成的组件关系](images/Foretify integration components.png){ width="800" }
   <figcaption>Foretify集成的组件关系</figcaption>
 </figure>
 
@@ -58,6 +58,18 @@ Foretify集成的一般架构如下所示：
       <figcaption>Foretify集成后setup</figcaption>
     </figure>
 
+    * **DSP说明**：Chery DSP的主要功能是将OSC2.0文件中指定的NOA参数传入Simulink，并发送UDP消息触发Simulink发送RDB trigger。
+    * **UDP通信说明**：DSP会发送UDP message到本机的12345端口。此端口由Simulink监听。
+    ```C title="UDP message格式"
+    struct udp_message {
+    int sim_time;
+    int speed;
+    };
+    ```
+    >其中，sim_time表示当前触发的VTD模拟器时间。speed表示当前设置的NOA巡航速度。
+    当foretify需要触发下一帧时，DSP就会发送这样一个UDP消息给Simulink。Simulink在接收到这个消息后会设置NOA速度并发送RDB trigger给VTD。
+
+
 === "原有测试架构（Foretify集成前）"
 
     <figure markdown="span">
@@ -70,18 +82,20 @@ Foretify集成的一般架构如下所示：
 
 ---
 
-## 配置步骤
+
+## 配置步骤 <a id="configuration-steps"></a>
+
 
 ### 配置前准备
 
 **1. 配置要求**
 
-   * VTD环境（本指南假设**VTD的安装目录**为：~/VIRES/VTD.2023.1）
-    > 如安装目录或版本有所不同，以下配置过程中注意做相应替换。
-   * matlab 2022 环境
-   * 完成[许可证服务器安装](license_server_installation.md)
-   * 完成[Foretify安装](license_developer_installation.md)
-   * Python2.7环境（需安装Matlab engine for Python）
+* VTD环境（本指南中**VTD的安装目录**为：~/VIRES/VTD.2023.1）
+> 如安装目录或版本有所不同，以下配置过程中注意做相应替换。
+* matlab 2022 环境
+* 完成[许可证服务器安装](license_server_installation.md)
+* 完成[Foretify安装](foretify_developer_installation.md)
+* Python2.7环境（需安装Matlab engine for Python）
 
 **2. 所需文件**
 
@@ -91,8 +105,8 @@ Foretellix工程师会提供如下文件：
 |---|---|
 | **vtd_ssp** | ssp组件的二进制文件 |
 | **vtd_dsp** | dsp组件的二进制文件 |
-| **start_algo.sh** | 启动SUT算法（加入了启动simulink的调用） |
-| **stop_algo.sh** | 启动SUT算法（加入了停止simulink的调用）|
+| **start_algo.sh** | 启动SUT算法的脚本（加入了启动simulink model的调用） |
+| **stop_algo.sh** | 停止SUT算法的脚本（加入了停止simulink model的调用）|
 | **start_slmdl.py** | 启动simulink model的脚本 （需Matlab engine for Python环境依赖） |
 | **stop_slmdl.py** | 停止simulink model的脚本 （需Matlab engine for Python环境依赖） |
 | **run_sl_mdl.sh** | 启动matlab |
@@ -133,14 +147,14 @@ mkdir Foretellix
 ??? tip "~/Foretellix/文件"
 
     <figure markdown="span">
-    ![chery_Foretellix_scripts](images/chery_Foretellix_scripts.png){ width="600" }
+    ![chery_Foretellix_scripts](images/chery_Foretellix_scripts.png){ width="800" }
     <figcaption>Foretellix下所需脚本</figcaption>
     </figure>    
 
 ??? tip "~/H-NOP/Lon/ 文件"
 
     <figure markdown="span">
-    ![Chery_H_nop_files](images/Chery_H_nop_files.png){ width="600" }
+    ![Chery_H_nop_files](images/Chery_H_nop_files.png){ width="800" }
     <figcaption>~/H-NOP/Lon下所需的文件</figcaption>
     </figure>    
     > 注：此处不是全部文件，仅列举foretify集成所需文件。
@@ -170,12 +184,12 @@ export CHERY_STOP_EXE=echo
 export CHERY_START_EXE=~/Foretellix/start_algo.sh
 export CHERY_STOP_EXE=~/Foretellix/stop_algo.sh
 ```
-> * 注：其中高亮的部分需根据实际环境进行配置。
+> 注：其中高亮的部分需根据实际环境进行配置。
 
 至此，完整的`ftx.rc`文件应当如下所示：
 
 ??? tip "ftx.rc文件内容"
-    ```bash hl_lines="1 11 14 25"
+    ```bash hl_lines="1 11 14 24 25 26"
     export CDS_LIC_FILE=5280@127.0.0.1
     export INCISIVE_HOME=/opt/foretellix/XCELIUM1809
     export SPECMAN_PATH=${INCISIVE_HOME}/tools/bin
@@ -213,7 +227,7 @@ export CHERY_STOP_EXE=~/Foretellix/stop_algo.sh
     export CHERY_STOP_EXE=~/Foretellix/stop_algo.sh
     ```
 
-    > * 注：上述语句的顺序不能随意变换，因为前后之间可能有依赖关系。比如引用了`$FTX` 的语句需出现在`export FTX` 语句之后。
+    > 注：上述语句的顺序不能随意变换，因为前后之间可能有依赖关系。比如引用了`$FTX` 的语句需出现在`export FTX` 语句之后。
 
 **3. 配置`~/.bashrc`**
 
@@ -223,7 +237,7 @@ export CHERY_STOP_EXE=~/Foretellix/stop_algo.sh
 export PATH=~/MATLAB/R2022a/bin:$PATH
 source /opt/foretellix/ftx.rc #如已添加则略过
 ```
-> 注意：第一行引用了Matlab的安装路径，如有变化请留意替换。
+> 注意：第一行引用了Matlab的安装路径，如有变化请注意替换。
 
 运行`source ~/.bashrc`或新打开一个Terminal使其生效。
 
@@ -257,7 +271,8 @@ import matlab.engine
 <figcaption>验证安装Matlab Engine for Python</figcaption>
 </figure>    
 
-**5. 修改`vtd_config.osc`文件**
+
+**5. 修改vtd_config.osc文件**
 
 为了适配Chery环境中的VTD，还需对foretify安装目录下的`vtd_config.osc`文件执行如下配置修改。
 
@@ -291,7 +306,7 @@ gedit vtd_config.osc
     ```
     > **注：**此处未显示全部代码，高亮标记需修改行。
 
-**5. 修改`vtd_config_imp.osc`文件**
+**6. 修改vtd_config_imp.osc文件**
 
 打开`vtd_config_imp.osc`文件：
 
@@ -316,6 +331,6 @@ gedit vtd_config_imp.osc
 
 
 
-至此，集成配置已经完成。请进行下一步测试验证。
+至此，集成配置已经完成。请进行下一步[快速开始](../quick_start/quick_start.md)。
 
     

@@ -61,14 +61,12 @@ sudo tar -xvf foretify_prerequisites.tar.xz -C /opt/foretellix/
 sudo chown -R $USER:users /opt/foretellix/XCELIUM1809
 ```
 
-**3. 在安装目录下新建一个文件`ftx.rc`并添加如下变量设置**
+**3. 在安装目录下新建一个文件`ftx.rc`并添加变量设置**
 
 ``` bash
 cd /opt/foretellix/
 gedit ftx.rc
 ```
-
-注意替换`<license_server IP>`, 如果license安装在本机，可设为 `127.0.0.1`。
 
 ``` py title="添加以下内容至ftx.rc"
 export CDS_LIC_FILE=5280@<license_server IP>
@@ -80,6 +78,7 @@ export CDS_LIC_QUEUE_POLL=1
 export CDS_LIC_QUEUE_POLL_INT=10
 export PATH=$PATH:${INCISIVE_HOME}/bin:${INCISIVE_HOME}/tools/bin
 ```
+>注意替换`<license_server IP>`, 如果license安装在本机，可设为 `127.0.0.1`。
 
 通过source `ftx.rc` 文件使环境变量生效：
 
@@ -110,7 +109,7 @@ Foretellix提供的Foretify安装包为一个二进制文件，如`24.06.0.xx-ub
 
 **1. 解压安装包**
 
-执行以下命令，将Foretify Developer安装至安装目录`/opt/foretellix/`
+执行以下命令，将foretify安装至`/opt/foretellix/`
 
 ``` py
 cd ~/FORETELLIX_INSTALL
@@ -151,12 +150,14 @@ source $FTX/bin/ftx_setup.sh
 foretify --gui
 ```
 
-如果您看到浏览器自动打开并显示如下界面，那恭喜您，Foretify Developer安装成功。
+如果您看到浏览器自动打开并显示如下界面，那恭喜您，**foretify安装成功**。
 
 <figure markdown="span">
   ![Foretellix logo](../images/Foretify Developer gui.png){ width="600" }
   <figcaption>Foretify Developer UI</figcaption>
 </figure>
+
+---
 
 至此，你的安装目录下的文件结构应如下所示：
 

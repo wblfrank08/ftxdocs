@@ -4,8 +4,11 @@
 
 - Foretify License Server: 用于提供license服务
 - Foretify平台：
-  - Foretify Developer
-  - Foretify Manager
+    - Foretify Developer
+    - Foretify Manager
+- 集成配置：
+    - 仿真器配置
+    - 被测对象配置
 
 以上组件需按顺序依次安装。
 
@@ -15,7 +18,7 @@
 </figure>
 
 !!! note "注意"
-    Foretify V-Suites随Foretify Developer一并安装
+    Foretify V-Suites随Foretify一并安装
 
 ### 硬件及系统需求
 

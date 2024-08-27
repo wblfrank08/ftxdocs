@@ -34,17 +34,15 @@ pre code, code {
     border-left: 4px solid #2196F3;
 }
 
+.md-grid {
+    max-width: 80%;
+    margin: auto; /* 居中对齐 */
+}
 
-/* .md-grid {
-    max-width: 1200px; /* 调整为更宽的宽度 */
-    margin: 0 auto; /* 居中显示 */
-} */
-
-
-.md-main {
+/* .md-main {
     padding-left: 10px;
     padding-right: 10px;
-}
+} */
 
 /* 限制表格的最大宽度并使其居中 */
 table {

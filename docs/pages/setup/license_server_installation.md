@@ -4,7 +4,7 @@
 
 **1. 许可证文件**
 
-Foretify许可证服务器的安装部署共需要两个license文件，请联系Foretellix工程师为指定工作站申请所需的许可证文件；
+Foretify许可证服务器的安装部署共需要两个license文件，请联系Foretellix工程师为指定服务器申请所需的许可证文件。
 
 | 许可证文件 | 名称参考 | 
 |---|---|
@@ -12,7 +12,7 @@ Foretify许可证服务器的安装部署共需要两个license文件，请联�
 | **Foretify license** | *CUSTOMER*.server.fltx_xxxx.txt |
 
 !!! note "注意"
-    * 许可证文件与服务器的mac地址绑定，因此**许可证仅能在指定工作站上生效**
+    * 许可证文件与服务器的mac地址绑定，因此**许可证仅能在指定服务器上生效**
     * 许可证默认占用端口**5280**和**27001**，确保该两端口可用。
 
 **2. 安装文件及安装脚本**
@@ -43,7 +43,7 @@ Foretify许可证服务器的安装部署共需要两个license文件，请联�
 
 **1. 安装依赖项**
 
-如工作站已包含该依赖项，可跳过此步骤：
+如服务器已包含该依赖项，可跳过此步骤：
   
 ```sudo apt install -y lsb-core```
 
@@ -55,7 +55,7 @@ sudo mkdir -p /opt/foretellix
 
 !!! note "自定义安装目录"
     默认情况下Foretellix会选择`/opt/foretellix/`作为foretify软件的安装目录。用户也可以自行选择。
-    但如果您自定义了其他安装目录，请**留意**后续的安装步骤中，需对出现默认安装目录`/opt/foretellix/`做**相应替换**。
+    但如果您自定义了其他安装目录，请**留意**后续的安装步骤中，需对出现的默认安装目录`/opt/foretellix/`做**相应替换**。
 
 **3. 将许可证文件和安装压缩包拷贝至安装目录**
    
@@ -70,7 +70,7 @@ sudo cp -r licenses /opt/foretellix/
     ```bash
     sudo tar -xzvf foretellix_licensing_servers.tar.gz -C /opt/foretellix/
     ```
-    > 选项`-C`表示目标目录
+    > 选项`-C`表示目标目录。
     > 执行该步骤，可跳过下一步操作。
 
 **4. 解压压缩包至安装目录**
@@ -88,15 +88,13 @@ sudo chown -R $USER:users /opt/foretellix
 ```
 > 选项`-R`是 "recursive" 的缩写，用于递归地更改目录及其所有子目录和文件的所有者。
 
-**6. 根据工作站实际参数更新两个许可证文件**
+**6. 根据服务器实际参数更新两个许可证文件** <a id="许可证更新"></a>
 
-<a id="许可证更新"></a>
-
-需结合工作站实际情况将两个许可证文件中的部分占位符替换成工作站的实际参数值，如下所示：
+结合服务器实际情况将两个许可证文件中的部分占位符替换成服务器的实际参数值，如下所示：
 
 === "Foretify license"
 
-    将foretify license中首行的`hostname`替换成工作站的实际hostname:
+    将foretify license中首行的`hostname`替换成服务器的实际hostname:
 
     <figure markdown="span">
     ![foretify lic](images/foretify lic.png){ width="500" }
@@ -107,7 +105,7 @@ sudo chown -R $USER:users /opt/foretellix
 
     Foretellix license中有两处更新：
 
-    1. 将`Cadence Server`替换成工作站的实际hostname
+    1. 将`Cadence Server`替换成服务器的实际hostname
     2. 将`./cdslmd` 替换成 `cdslmd`所在的**绝对路径**
     >  `cdslmd` 位于解压后的`installation_files/`文件夹下。
     
@@ -115,9 +113,9 @@ sudo chown -R $USER:users /opt/foretellix
     ![foretellix lic](images/foretellix lic.png){ width="600" }
     </figure>  
 
-**7. 更改两个license文件的权限**
+**7. 更改两个license文件的权限** <a id="更改两个license文件的权限"></a>
 
-<a id="更改两个license文件的权限"></a>
+
 
 ``` bash
 cd /opt/foretellix/licenses
@@ -137,9 +135,9 @@ sudo chmod 644 *.txt
     - 其他人（others）: 读（r）
 
 
-**8. 运行许可证安装脚本**
+**8. 运行许可证安装脚本** <a id="运行许可安装脚本"></a>
 
-<a id="运行许可安装脚本"></a>
+
 
 ``` bash
 cd /opt/foretellix/foretellix_licensing_servers
@@ -177,9 +175,9 @@ sudo ./license_installer.sh -l <path_to_foretellix_license_file> -l <path_to_for
 为确保license安装成功且运行，请通过下一步进行安装状态检查。 
 
 
-## 安装状态检查
+## 安装状态检查 <a id="安装状态检查"></a>
 
-<a id="安装状态检查"></a>
+
 
 通过如下脚本分别检测两项license服务的运行状态：
 
@@ -221,9 +219,9 @@ sudo netstat -tnlp
 
 至此，许可证服务器已安装完成。成功后您可以继续下一步：**Foretify软件的安装**。
 
-## 问题排查
+## 问题排查 <a id="troubleshooting"></a>
 
-<a id="troubleshooting"></a>
+
 
 如果上述第8步[运行许可安装脚本](#运行许可安装脚本)后未提示success，或上述第9步中查看到的license status不是`active`, 可从以下几方面入手进行问题排查：
 

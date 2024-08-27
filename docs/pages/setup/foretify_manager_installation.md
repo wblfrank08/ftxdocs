@@ -212,4 +212,28 @@ fmanager
 </figure>
 
 
+### 新建Project
+
+请尝试登录fmanager并新建一个project，命名为`admin`.
+> 后续我们在[**快速开始**](../quick_start/quick_start.md)会需要将测试数据上传于该Project下。
+
+??? tip "登录账号"
+    * username: admin@fmanager.com
+    * password: admin
+
+登录成功后，您可通过右上角的"Create New Project"创建一个名为`admin`的project.
+
+<figure markdown="span">
+  ![create_project](images/create_project.png){ width="400" }
+  <figcaption>新建项目</figcaption>
+</figure>
+
+创建成功后，名为`admin`的Project将会出现在页面。
+
+<figure markdown="span">
+  ![project_admin](images/project_admin.png){ width="600" }
+  <figcaption>项目admin创建成功</figcaption>
+</figure>
+
+---
 
