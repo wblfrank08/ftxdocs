@@ -207,7 +207,6 @@ export CHERY_STOP_EXE=~/Foretellix/stop_algo.sh
     export FTX_FM_HOST=localhost
     export FTX_FMANAGER_PORT=8080
     export FTX_FMANAGER_HOST=localhost
-    export FTX_FMANAGER_PORT=8080
     export FMANAGER_USER=admin@fmanager.com
     export FMANAGER_PWD=admin
     export FTX_FMANAGER_PROJECT=admin
@@ -272,6 +271,7 @@ import matlab.engine
 </figure>    
 
 
+
 **5. 修改vtd_config.osc文件**
 
 为了适配Chery环境中的VTD，还需对foretify安装目录下的`vtd_config.osc`文件执行如下配置修改。
@@ -285,6 +285,16 @@ gedit vtd_config.osc
 
 - 将源文件中第34行的`rdb_trigger_policy = ALL`改成`rdb_trigger_policy = FIRST_ONLY`
 - 在第35行加入`set connection_string = "127.0.0.1:48179;127.0.0.1:48690"`
+
+??? tip "关于端口48690"
+    上述connection_string中的48690需与`$FTX_VTD_PROJ`项目`SampleProject_zhongqi_0607`中的TaskControl中的**RDB_2**中的**portTx**保持一致，如下所示：
+
+    <figure markdown="span">
+    ![vtdsetup_rdb2_port](images/vtdsetup_rdb_port.png){ width="400" }
+    <figcaption>VTD project RDB port</figcaption>
+    </figure>   
+
+    另一个端口号`48179`为默认值。
 
 更新后保存。
 

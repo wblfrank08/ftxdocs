@@ -61,12 +61,17 @@ sudo tar -xvf foretify_prerequisites.tar.xz -C /opt/foretellix/
 sudo chown -R $USER:users /opt/foretellix/XCELIUM1809
 ```
 
-**3. 在安装目录下新建一个文件`ftx.rc`并添加变量设置**
+**3. 在安装目录下打开/新建一个文件`ftx.rc`并添加变量设置**
 
 ``` bash
 cd /opt/foretellix/
 gedit ftx.rc
 ```
+
+!!!note "注意"
+
+    默认情况下，执行第一个步骤后会自动生成一个 ftx.rc 文件。使用上述指令打开该文件后，如果发现文件中已有内容，可以选择将其全部删除或注释掉。
+    如果安装目录下没有自动生成 ftx.rc 文件，也可以通过上述指令创建。
 
 ``` py title="添加以下内容至ftx.rc"
 export CDS_LIC_FILE=5280@<license_server IP>
@@ -78,7 +83,23 @@ export CDS_LIC_QUEUE_POLL=1
 export CDS_LIC_QUEUE_POLL_INT=10
 export PATH=$PATH:${INCISIVE_HOME}/bin:${INCISIVE_HOME}/tools/bin
 ```
->注意替换`<license_server IP>`, 如果license安装在本机，可设为 `127.0.0.1`。
+>注意替换`<license_server IP>`, 如果license安装在本机，可将`<license_server IP>`替换为 `127.0.0.1`。
+
+??? tip "ftx.rc参考"
+    如果许可证服务器安装在本机，则当前您的ftx.rc应如下所示：
+
+    ```bash
+    export CDS_LIC_FILE=5280@127.0.0.1
+    export INCISIVE_HOME=/opt/foretellix/XCELIUM1809
+    export SPECMAN_PATH=${INCISIVE_HOME}/tools/bin
+    export CDS_INST_DIR=${INCISIVE_HOME}
+    export CDS_AUTO_64BIT=ALL
+    export CDS_LIC_QUEUE_POLL=1
+    export CDS_LIC_QUEUE_POLL_INT=10
+    export PATH=$PATH:${INCISIVE_HOME}/bin:${INCISIVE_HOME}/tools/bin
+    ```
+
+
 
 通过source `ftx.rc` 文件使环境变量生效：
 
@@ -139,6 +160,27 @@ export FTX=/opt/foretellix/ftx
 export FTX_LIC_FILE=27001@<license_server IP>
 source $FTX/bin/ftx_setup.sh 
 ```
+
+??? tip "ftx.rc参考"
+    如果许可证服务器安装在本机，则当前您的ftx.rc应如下所示：
+
+    ```bash
+    export CDS_LIC_FILE=5280@127.0.0.1
+    export INCISIVE_HOME=/opt/foretellix/XCELIUM1809
+    export SPECMAN_PATH=${INCISIVE_HOME}/tools/bin
+    export CDS_INST_DIR=${INCISIVE_HOME}
+    export CDS_AUTO_64BIT=ALL
+    export CDS_LIC_QUEUE_POLL=1
+    export CDS_LIC_QUEUE_POLL_INT=10
+    export PATH=$PATH:${INCISIVE_HOME}/bin:${INCISIVE_HOME}/tools/bin
+
+    export FTX=/opt/foretellix/ftx
+    export FTX_LIC_FILE=27001@127.0.0.1
+    source $FTX/bin/ftx_setup.sh
+
+    ```
+
+
 
 同样地，为确保上述变量生效，请执行 `source /opt/foretellix/ftx.rc`。如果您已经将该语句添加至 `~/.bashrc`中，则新打开Terminal中，变量设置也会生效。
 

@@ -193,6 +193,36 @@ alias fmanager='google-chrome http://${FTX_FMANAGER_HOST}:${FTX_FMANAGER_PORT}'
 
 更新后保存文件。
 
+??? tip "ftx.rc参考"
+    如果许可证服务器安装在本机，则当前您的ftx.rc应如下所示：
+    （本例中foretify manager的版本为fmanager_24.06.0.9_ubuntu2004）
+
+    ```bash
+    export CDS_LIC_FILE=5280@127.0.0.1
+    export INCISIVE_HOME=/opt/foretellix/XCELIUM1809
+    export SPECMAN_PATH=${INCISIVE_HOME}/tools/bin
+    export CDS_INST_DIR=${INCISIVE_HOME}
+    export CDS_AUTO_64BIT=ALL
+    export CDS_LIC_QUEUE_POLL=1
+    export CDS_LIC_QUEUE_POLL_INT=10
+    export PATH=$PATH:${INCISIVE_HOME}/bin:${INCISIVE_HOME}/tools/bin
+
+    export FTX=/opt/foretellix/ftx
+    export FTX_LIC_FILE=27001@127.0.0.1
+    source $FTX/bin/ftx_setup.sh
+
+    export PATH=$PATH:/opt/foretellix/fmanager_24.06.0.9_ubuntu2004/client/bin
+    export FTX_FM_HOST=localhost
+    export FTX_FMANAGER_PORT=8080
+    export FTX_FMANAGER_HOST=localhost
+    export FMANAGER_USER=admin@fmanager.com
+    export FMANAGER_PWD=admin
+    export FTX_FMANAGER_PROJECT=admin
+
+    alias fmanager='google-chrome http://${FTX_FMANAGER_HOST}:${FTX_FMANAGER_PORT}'
+
+    ```
+
 ### 验证Fmanager的安装状态
 
 使用fmanager之前确保`/opt/foretellix/ftx.rc`有被source到。

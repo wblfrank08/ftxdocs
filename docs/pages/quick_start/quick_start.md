@@ -84,7 +84,27 @@ cd ~/H-NOP/Lon
 <figcaption> Step1. 启动Matlab </figcaption>
 </figure> 
 
+??? tip "troubleshooting-启动窗口报错"
+    
+    如果上一次matlab非正常退出，则您可能在运行该脚本后遇到如下报错：
 
+    <figure markdown="span">
+    ![matlab启动报错](images/troubleshooting_start_simulink.png){ width="600" }
+    <figcaption>matlab非正常退出引起报错</figcaption>
+    </figure>   
+
+    报错的原因是由于 MATLAB 异常退出，导致应随 MATLAB 退出时自动删除的 ftlx_matlab 会话未能正常销毁，从而引发资源冲突。
+
+    **解决方法**：
+    退出当前matlab,进入/tmp目录并删除残留的会话`ftlx_matlab`
+
+    ```bash
+    cd /tmp
+    rm ftlx_matlab
+    ```
+    然后再重新进行上述STEP 1操作运行`run_sl_mdl.sh`即可。
+    
+    
 
 ### Step 2. 启动foretify运行测试
 
@@ -178,9 +198,21 @@ foretify --gui --load t_Chery_lead_vehicle_and_slow.osc
     Status表示当前测试运行的状态，如果测试通过，则显示为Completed. 如果测试失败，根据不同的具体原因可显示为incomplete scenario, SUT error或Test error等。具体含义会在正式的workshop培训中进行讲解。
 
 
-#### 4. 测试调试【可选】
+#### 4. 测试回放与调试【可选】
 
 测试完成后，您可以通过Foretify Developer UI上的各项功能进行测试回放、log查询等各种调试操作。
+
+!!! tip "查看最近运行记录"
+    通过Foretify Developer不但可以查看当前的运行测试记录，也可以查看最近的历史运行测试记录。
+
+    如下图所示：点击foretify developer左上角的**Load** -> **Runs Results**，显示最近的运行记录。选择某一条记录后点击右上角的**Debug Run**或直接鼠标双击记录即可跳转至调试界面。
+    
+    **注：**<u>由于浏览器界面刷新可能会有延迟，建议在跳转之后手动点击浏览器的刷新按钮进行数据刷新。</u>
+
+    <figure markdown="span">
+        ![foretify_load](images/foretify_load.png){ width="600" }
+    </figure>
+
 
 请点击如下Tab分别了解Foretify Developer提供的各种调试工具的使用方法:
 
@@ -413,18 +445,45 @@ frun --csv batch_tests.csv --batch --info
 
 **1. 上传数据至Fmanager**
 
-在frun批量自动化测试执行完成后，在Terminal窗口中将会看到如下一行输出：`To collect runs in fmanager issue the following command: xxxx.sh`. 该指令是**用于快速上传该次frun自动化测试结果**的脚本。
+=== "frun结果上传"
 
-<figure markdown="span">
-    ![frun_issue_cmd](images/frun_issue_cmd.png){ width="800" }
-</figure>   
+    采用frun进行批量测试，会自动生成一个上传测试结果的脚本。
 
-将该指令复制到新的Terminal中，回车。稍等片刻后，会看到该批次测试数据上传成功。
-> frun指令默认将数据上传至`admin`名下的`admin`project下。如果该`admin`项目不存在则会提示报错。因此需要提前创建项目。
+    在frun批量自动化测试执行完成后，在Terminal窗口中将会看到如下一行输出：`To collect runs in fmanager issue the following command: xxxx.sh`. 该指令是**用于快速上传该次frun自动化测试结果**的脚本。
 
-<figure markdown="span">
-    ![frun_upload](images/frun_upload.png){ width="800" }
-</figure>  
+    <figure markdown="span">
+        ![frun_issue_cmd](images/frun_issue_cmd.png){ width="800" }
+    </figure>   
+
+    将该指令复制到新的Terminal中，回车。稍等片刻后，会看到该批次测试数据上传成功。
+    > frun指令默认将数据上传至`admin`名下的`admin`project下。如果该`admin`项目不存在则会提示报错。因此需要提前创建项目。
+
+    <figure markdown="span">
+        ![frun_upload](images/frun_upload.png){ width="800" }
+    </figure>  
+
+=== "crun结果上传"
+    
+    如果通过非 frun 方式获取测试结果，并希望在 Foretify Manager 中统计查看，例如使用 `--crun 10 --work_dir <目标存储目录>` 或 `--run --work_dir <目标存储目录>` 指令，则需要通过 `upload_runs` 指令手动上传结果。
+
+    >注：为方便后续统一管理测试记录，建议通过 `--work_dir` 设置目标存储目录，否则运行记录将默认存储在 `$HOME/foretify` 目录下。
+
+    ```bash
+    upload_runs --host localhost --port 8080 --user admin@fmanager.com --password admin --runs_top_dir <目标存储目录> --project admin
+    ```
+
+    >注：为便于区分上传记录，也可采用`--run_top_name`对当前测试组结果进行自定义命名，呈现效果如下：
+
+    <figure markdown="span">
+        ![fm_run_group_name](images/fm_run_group_name.png){ width="400" }
+    </figure>   
+
+    > 通过 `upload_runs --help`可查看该指令更多使用方法。
+
+
+
+
+
 
 
 **2. 打开Fmanager进行数据分析查看**
